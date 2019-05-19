@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="book-trading-spring:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>book-trading-spring</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="book-trading-spring.war">
+      <element id="artifact" artifact-name="book-trading-spring:war exploded" />
+    </root>
+  </artifact>
+</component>

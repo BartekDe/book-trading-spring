@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>pl.bartekde.springsecuritydemo</groupId>
+    <groupId>pl.bartekde.booktradingspring</groupId>
 	<artifactId>book-trading-spring</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
@@ -47,6 +47,34 @@
 		  	<artifactId>spring-security-taglibs</artifactId>
 		  	<version>${springsecurity.version}</version>
 		</dependency>
+
+        <!-- Spring Transactions -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${springframework.version}</version>
+        </dependency>
+
+        <!-- Spring ORM -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${springframework.version}</version>
+        </dependency>
+
+        <!-- Hibernate Core -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.2.Final</version>
+        </dependency>
+
+        <!-- Hibernate Validator -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.0.7.Final</version>
+        </dependency>
 		
 		<!-- Add MySQL and C3P0 support -->
 		
@@ -88,12 +116,18 @@
 			<scope>test</scope>
 		</dependency>
 
-	</dependencies>
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>javax.persistence-api</artifactId>
+            <version>2.2</version>
+        </dependency>
 
-	<!-- TO DO: Add support for Maven WAR Plugin -->
+    </dependencies>
+
+    <!-- Add support for Maven WAR Plugin -->
 	
 	<build>
-		<finalName>spring-security-demo</finalName>
+        <finalName>book-trading-spring</finalName>
 		
 		<pluginManagement>
 			<plugins>
