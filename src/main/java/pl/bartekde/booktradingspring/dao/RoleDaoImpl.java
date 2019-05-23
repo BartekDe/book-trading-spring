@@ -1,21 +1,22 @@
 package pl.bartekde.booktradingspring.dao;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pl.bartekde.booktradingspring.entity.Role;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 @Repository
 public class RoleDaoImpl implements RoleDao {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public Role findRoleByName(String roleName) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = entityManager.unwrap(Session.class);
 
         Query<Role> theQuery = session.createQuery("from Role where name=:roleName", Role.class);
         theQuery.setParameter("roleName", roleName);

@@ -1,22 +1,23 @@
 package pl.bartekde.booktradingspring.dao;
 
-import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pl.bartekde.booktradingspring.entity.User;
 import org.hibernate.Session;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 @Repository
 public class UserDaoImpl implements UserDao {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public User findByUsername(String username) {
         // get the current hibernate session
-        Session session = sessionFactory.getCurrentSession();
+        Session session = entityManager.unwrap(Session.class);
 
         // read user from database using the username
         Query<User> theQuery = session.createQuery("from User where username=:username", User.class);
@@ -32,7 +33,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void save(User user) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = entityManager.unwrap(Session.class);
         session.save(user);
     }
 }
