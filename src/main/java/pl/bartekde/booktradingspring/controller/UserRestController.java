@@ -7,9 +7,10 @@ import pl.bartekde.booktradingspring.entity.User;
 
 @RestController
 @RequestMapping("/rest")
-public class TestController {
+public class UserRestController {
     @GetMapping("/hello")
-    public User helloRest() {
+    public User showUser() {
+        // TODO: 24.05.2019 remove hardcoded user
         User testUser = new User();
         testUser.setFirstName("Bartosz");
         testUser.setLastName("Nazwisko");
