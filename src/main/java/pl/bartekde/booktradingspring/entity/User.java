@@ -1,10 +1,14 @@
 package pl.bartekde.booktradingspring.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
 @Table(name = "users")
+// TODO: 24.05.2019 remove json ignore properties on user entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
 
     @Id
