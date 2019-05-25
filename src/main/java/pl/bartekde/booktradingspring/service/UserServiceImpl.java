@@ -21,14 +21,18 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
     private UserDao userDao;
-
-    @Autowired
     private RoleDao roleDao;
-
-    @Autowired
+    
     private BCryptPasswordEncoder passwordEncoder;
+    
+    @Autowired
+    public UserServiceImpl(UserDao userDao, RoleDao roleDao, BCryptPasswordEncoder passwordEncoder) {
+    	this.userDao = userDao;
+    	this.roleDao = roleDao;
+    	this.passwordEncoder = passwordEncoder;
+    	
+	}
 
     @Override
     @Transactional
@@ -69,4 +73,9 @@ public class UserServiceImpl implements UserService {
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }
+
+	@Override
+	public User findById(int id) {
+		return userDao.findById(id);
+	}
 }

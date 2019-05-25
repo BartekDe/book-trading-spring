@@ -18,8 +18,12 @@ import java.util.logging.Logger;
 @RequestMapping("/register")
 public class RegisterController {
 
-    @Autowired
     private UserService userService;
+    
+    @Autowired
+    public RegisterController(UserService userService) {
+    	this.userService = userService;
+    }
 
     private Logger logger = Logger.getLogger(getClass().getName());
 

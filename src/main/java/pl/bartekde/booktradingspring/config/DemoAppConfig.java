@@ -31,8 +31,12 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 public class DemoAppConfig {
 	
 	// set up variable to hold the properties
-	@Autowired
 	private Environment env;
+	
+	@Autowired
+	public DemoAppConfig(Environment env) {
+		this.env = env;
+	}
 	
 	// set up a logger for diagnostics
 	
@@ -51,7 +55,7 @@ public class DemoAppConfig {
 		return viewResolver;
 	}
 	
-	// define a bean for secutity data source
+	// define a bean for security data source
 	
 	@Bean
 	public DataSource securityDataSource() {

@@ -72,3 +72,4 @@ local.properties
 
 # End of https://www.gitignore.io/api/eclipse
 target/test-classes/com/luv2code/springsecurity/\.DS_Store
+/target/

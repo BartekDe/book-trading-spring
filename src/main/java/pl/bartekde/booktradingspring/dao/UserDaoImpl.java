@@ -36,4 +36,19 @@ public class UserDaoImpl implements UserDao {
         Session session = entityManager.unwrap(Session.class);
         session.save(user);
     }
+
+	@Override
+	public User findById(int id) {
+		Session session = entityManager.unwrap(Session.class);
+		
+		Query<User> theQuery = session.createQuery("from User where id=:id", User.class);
+		theQuery.setParameter("id", id);
+		User theUser = null;
+		try {
+			theUser = theQuery.getSingleResult();
+		} catch (Exception e) {
+			theUser = null;
+		}
+		return theUser;
+	}
 }
