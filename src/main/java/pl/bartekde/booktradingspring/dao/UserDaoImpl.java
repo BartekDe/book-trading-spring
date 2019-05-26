@@ -1,5 +1,7 @@
 package pl.bartekde.booktradingspring.dao;
 
+import org.hibernate.Hibernate;
+import org.hibernate.mapping.Collection;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import pl.bartekde.booktradingspring.entity.User;
@@ -38,15 +40,17 @@ public class UserDaoImpl implements UserDao {
     }
 
 	@Override
-	public User findById(int id) {
+    public User findById(long id) {
 		Session session = entityManager.unwrap(Session.class);
 		
 		Query<User> theQuery = session.createQuery("from User where id=:id", User.class);
 		theQuery.setParameter("id", id);
 		User theUser = null;
-		try {
-			theUser = theQuery.getSingleResult();
-		} catch (Exception e) {
+
+        try {
+            theUser = theQuery.getSingleResult();
+            Hibernate.initialize(theUser.getRoles()); // enables lazy loading user entities - resolves getting roles collection issue
+        } catch (Exception e) {
 			theUser = null;
 		}
 		return theUser;

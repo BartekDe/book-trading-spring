@@ -7,8 +7,7 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "users")
-// TODO: 24.05.2019 remove json ignore properties on user entity
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties(value = "password") // don't include encoded password in json
 public class User {
 
     @Id

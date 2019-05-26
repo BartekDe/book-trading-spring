@@ -7,8 +7,8 @@ import pl.bartekde.booktradingspring.user.CrmUser;
 public interface UserService extends UserDetailsService {
 
     User findByUsername(String username);
-    
-    User findById(int id);
+
+    User findById(long id);
 
     void save(CrmUser crmUser);
 }
