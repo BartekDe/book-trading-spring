@@ -1,7 +1,6 @@
 package pl.bartekde.booktradingspring.dao;
 
 import org.hibernate.Hibernate;
-import org.hibernate.mapping.Collection;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import pl.bartekde.booktradingspring.entity.User;
