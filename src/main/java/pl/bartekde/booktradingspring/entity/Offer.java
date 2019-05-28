@@ -1,10 +1,13 @@
 package pl.bartekde.booktradingspring.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "offers")
+@JsonIgnoreProperties(value = "user")
 public class Offer {
 
     @Id
@@ -12,8 +15,8 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "book_name")
-    private String bookName;
+    @Column(name = "book_title")
+    private String bookTitle;
 
     @Column(name = "book_author")
     private String bookAuthor;
@@ -25,14 +28,17 @@ public class Offer {
     private Timestamp offerDate;
 
     @Column(name = "is_available")
-    private boolean isAvailable;
+    private String isAvailable;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Offer(String bookName, String bookAuthor, String bookDescription, Timestamp offerDate, boolean isAvailable) {
-        this.bookName = bookName;
+    public Offer() {
+    }
+
+    public Offer(String bookTitle, String bookAuthor, String bookDescription, Timestamp offerDate, String isAvailable) {
+        this.bookTitle = bookTitle;
         this.bookAuthor = bookAuthor;
         this.bookDescription = bookDescription;
         this.offerDate = offerDate;
@@ -47,12 +53,12 @@ public class Offer {
         this.id = id;
     }
 
-    public String getBookName() {
-        return bookName;
+    public String getBookTitle() {
+        return bookTitle;
     }
 
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
+    public void setBookTitle(String bookTitle) {
+        this.bookTitle = bookTitle;
     }
 
     public String getBookAuthor() {
@@ -79,11 +85,11 @@ public class Offer {
         this.offerDate = offerDate;
     }
 
-    public boolean isAvailable() {
+    public String isAvailable() {
         return isAvailable;
     }
 
-    public void setAvailable(boolean available) {
+    public void setAvailable(String available) {
         isAvailable = available;
     }
 
@@ -99,7 +105,7 @@ public class Offer {
     public String toString() {
         return "Offer{" +
                 "id=" + id +
-                ", bookName='" + bookName + '\'' +
+                ", bookTitle='" + bookTitle + '\'' +
                 ", bookAuthor='" + bookAuthor + '\'' +
                 ", bookDescription='" + bookDescription + '\'' +
                 ", offerDate=" + offerDate +

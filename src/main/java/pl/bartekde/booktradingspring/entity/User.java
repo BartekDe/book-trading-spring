@@ -35,7 +35,7 @@ public class User {
     @Column(name = "state")
     private String state;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Offer> offers;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
